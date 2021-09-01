@@ -109,7 +109,7 @@ public class TelaPrincipal extends JFrame implements ActionListener {
         // Instancia a quantidade de linha e coluna cada componente ocupa
         gbc.gridheight = quantidadeLinhas;
         gbc.gridwidth = quantidadeColunas;
-        //h/ Instanciar um novo botão
+        //h/ Instanciar um novo botão no painel lateral
         jpPainelLateral.add(botao, gbc);
         //h/ Adiciona função ao novo botão
         botao.addActionListener(this);
