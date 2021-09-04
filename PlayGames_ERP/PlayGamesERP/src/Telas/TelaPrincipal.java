@@ -39,7 +39,7 @@ public class TelaPrincipal extends JFrame implements ActionListener {
         adicionaBotoes(4, 1, 1, 1, jbCadastros);
         //h/ Instanciar gerenciador de janelas para painel principal
         jpPainelPrincipal.add(jdp);
-
+        
         //h/ Definir a tela como visivel
         setVisible(true);
     }
@@ -93,7 +93,11 @@ public class TelaPrincipal extends JFrame implements ActionListener {
         //h/ Verifica qual dos itens do menu esta chamando a ação
         if ((ae.getSource() == jmiPessoas) || (ae.getSource() == jbCadastros)){
             //h/ Instanciar tela conforme classe TelaSistema
-            TelaCadastroPessoas telaCadastroPessoas = new TelaCadastroPessoas();
+//            TelaCadastroPessoas telaCadastroPessoas = new TelaCadastroPessoas();
+            JFrame frame = new JFrame(); 
+            frame.setBounds(10,10,700,600); 
+            frame.setVisible(true);
+            
         }
     }
 
