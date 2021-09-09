@@ -7,7 +7,7 @@ public abstract class TelaSistema extends JInternalFrame {
     public TelaSistema (String titulo) {
         //h/ Implementar construtor da super classe original
         super(titulo, true, true, true, true);
-        //h/ Definir o tamanho inicial da nova tela
+        //h/ Definir o tamanho inicial da no==va tela
         setSize(800, 600);
         //h/ Adicionar nova janela ao gerenciador
         TelaPrincipal.jdp.add(this);
