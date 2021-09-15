@@ -1,14 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Telas;
 
-/**
- *
- * @author Felipe
- */
-public class CadastroClienteFisico {
+import Telas.componentes.*;
+import java.awt.event.ActionEvent;
+
+public class CadastroClienteFisico extends TelaSistema {
+    private MeuJTextField jtfIdCliente = new MeuJTextField(30, "ID Cliente");
+    public CadastroClienteFisico(){
+        super("Cadastro Pessoa Fisica");
+        
+        montaTela();
+        
+        pack();
+        
+        
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        
+    }
+
+    private void montaTela() {
+        adicionaComponentes(jpComponentes, 1, 1, 1 ,2 , jtfIdCliente);
+    }
     
+    private void adicionaListener(){
+        jtfIdCliente.addActionListener(this);
+    }
 }
