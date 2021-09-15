@@ -11,14 +11,18 @@ public final class TelaPrincipal extends JFrame implements ActionListener {
     //h/ Atributos para composição da barra de menus
     private JMenu jmCadastros, jmLocais, jmCadProdutos,
             jmVendas, 
-            jmProdutos;
+            jmProdutos,
+            jmFinancas;
     //h/ Atributo para composição de itens do menu
     private JMenuItem jmiPessoas, jmiCidades, jmiEstados, jmiPaises, jmiCadastroProdutos, jmiCategorias, 
             jmiNovasVendas, jmiRelatorioVendas,
-            jmiEstoque, jmiMovimentacaoProdutos;
+            jmiEstoque, jmiMovimentacaoProdutos,
+            jmiCaixa, jmiRelatorioFinanceiro, jmiDespesas;
     //h/ Atributos para composição dos paineis
     protected JPanel jpPainelLateral = new JPanel();
     protected JPanel jpPainelPrincipal = new JPanel();
+    protected JPanel jpPainelFoto = new JPanel();
+    protected JPanel jpPainelUsuario = new JPanel();
     //h/ Botões para painel lateral
     protected JButton jbCadastroProd = new JButton("Cadastro de Produto");
     protected JButton jbCadastroCliFor = new JButton("Cadastro de Cliente e Fornecedor");
@@ -26,6 +30,9 @@ public final class TelaPrincipal extends JFrame implements ActionListener {
     protected JButton jbRelatorioVendas = new JButton("Relatório de Vendas");
     protected JButton jbEstoque = new JButton("Estoques");
     protected JButton jbMovimentacaoProdutos = new JButton("Movimentação de Produto");
+    protected JButton jbCaixa = new JButton("Caixa");
+    protected JButton jbRelatorioFinanceiro = new JButton("Relatório Financeiro");
+    protected JButton jbDespesas = new JButton("Cadastro Despesa");
 
     //h/ Método para Instanciar uma nova tela
     public TelaPrincipal (String titulo) {
@@ -44,9 +51,16 @@ public final class TelaPrincipal extends JFrame implements ActionListener {
         getContentPane().add(jpPainelPrincipal, "Center");
         //h/ Instancia cor de fundo dos painéis
         jpPainelLateral.setBackground(Color.GRAY);
-        jpPainelPrincipal.setBackground(Color.black);
-        //h/ Instanciar layout para painel lateral
-        jpPainelLateral.setLayout(new GridLayout(13, 1));
+        jpPainelFoto.setBackground(Color.GRAY);
+        jpPainelUsuario.setBackground(Color.GRAY);
+        jdp.setBackground(Color.black);
+        //h/ Instanciar layout para paineeis
+        jpPainelLateral.setLayout(new GridLayout(12, 1));
+        jpPainelUsuario.setLayout(new GridLayout(1, 1));
+        jpPainelPrincipal.setLayout(new BorderLayout());
+        //h/ Adicionar painéis para composição da Foto e do nome de Usuário
+        jpPainelLateral.add(jpPainelFoto);
+        jpPainelLateral.add(jpPainelUsuario);
         //h/ Adicionar botões ao painel lateral
         adicionaBotoes(jbCadastroCliFor);
         adicionaBotoes(jbCadastroProd);
@@ -54,8 +68,15 @@ public final class TelaPrincipal extends JFrame implements ActionListener {
         adicionaBotoes(jbMovimentacaoProdutos);
         adicionaBotoes(jbNovasVendas);
         adicionaBotoes(jbRelatorioVendas);
+        adicionaBotoes(jbCaixa);
+        adicionaBotoes(jbRelatorioFinanceiro);
+        adicionaBotoes(jbDespesas);
         //h/ Instanciar gerenciador de janelas para painel principal
         jpPainelPrincipal.add(jdp);
+        //h/ Adicionar nome de usuário ao painel
+        jpPainelUsuario.add(new JLabel("<html><body><h1><b><Font color=white>"
+                + "Fulano de Tal"
+                + "</font></b></h1></body></html>"));
         
         //h/ Definir a tela como visivel
         setVisible(true);
@@ -71,10 +92,12 @@ public final class TelaPrincipal extends JFrame implements ActionListener {
         jmCadastros = new JMenu("Cadastros");
         jmVendas = new JMenu("Vendas");
         jmProdutos = new JMenu("Produtos");
+        jmFinancas = new JMenu("Finanças");
         //h/ Adicionar menus a barra
         jmbTopo.add(jmCadastros);
         jmbTopo.add(jmVendas);
         jmbTopo.add(jmProdutos);
+        jmbTopo.add(jmFinancas);
         //h/ Intanciar os submenus
         jmLocais = new JMenu("Cadastro de Locais");
         jmCadProdutos = new JMenu("Cadastro de Produtos");
@@ -97,12 +120,18 @@ public final class TelaPrincipal extends JFrame implements ActionListener {
         jmiRelatorioVendas = new JMenuItem("Relatório de Vendas");
         jmiEstoque = new JMenuItem("Relatório de Estoque");
         jmiMovimentacaoProdutos = new JMenuItem("Movimentação de produtos");
+        jmiCaixa = new JMenuItem("Caixa");
+        jmiRelatorioFinanceiro = new JMenuItem("Contas a Receber");
+        jmiDespesas = new JMenuItem("Despesas");
         //h/ Adicionar itens ao menu
         jmCadastros.add(jmiPessoas);
         jmVendas.add(jmiNovasVendas);
         jmVendas.add(jmiRelatorioVendas);
         jmProdutos.add(jmiEstoque);
         jmProdutos.add(jmiMovimentacaoProdutos);
+        jmFinancas.add(jmiCaixa);
+        jmFinancas.add(jmiRelatorioFinanceiro);
+        jmFinancas.add(jmiDespesas);
         //h/ adicionar submenu ao menu
         jmCadastros.add(jmLocais);
         jmProdutos.add(jmCadProdutos); //verificar com professor
@@ -130,13 +159,9 @@ public final class TelaPrincipal extends JFrame implements ActionListener {
         jmiRelatorioVendas.addActionListener(this);
         jmiEstoque.addActionListener(this);
         jmiMovimentacaoProdutos.addActionListener(this);
-        //h/ Instancia ActionListener de cada botão do menu lateral
-        jbCadastroCliFor.addActionListener(this);
-        jbCadastroProd.addActionListener(this);
-        jbEstoque.addActionListener(this);
-        jbMovimentacaoProdutos.addActionListener(this);
-        jbNovasVendas.addActionListener(this);
-        jbRelatorioVendas.addActionListener(this);
+        jmiCaixa.addActionListener(this);
+        jmiRelatorioFinanceiro.addActionListener(this);
+        jmiDespesas.addActionListener(this);
     }
 
     //h/ Método para ações a serem realizadas pelo ActionListener
@@ -145,12 +170,10 @@ public final class TelaPrincipal extends JFrame implements ActionListener {
         //h/ Verifica qual dos itens do menu esta chamando a ação
         if ((ae.getSource() == jmiPessoas) || (ae.getSource() == jbCadastroCliFor)){
             //h/ Instanciar tela conforme classe TelaSistema
-
-            System.out.print("Cadastro de Pessoas");
+            TelaCadastroPessoas telaCadastroPessoas = new TelaCadastroPessoas();
             
         } else if ((ae.getSource() == jmiCadastroProdutos) || (ae.getSource() == jbCadastroProd)) {
             //h/ Instanciar tela de cadastro de produto conforme classe TelaSistema
-            System.out.print("Olá Mundo");
             TelaCadastroProduto telaCadastroProduto = new TelaCadastroProduto(); // Verificar com professor
             
         } else if (ae.getSource() == jmiCidades) {
@@ -167,7 +190,7 @@ public final class TelaPrincipal extends JFrame implements ActionListener {
             
         } else if ((ae.getSource() == jmiNovasVendas) || (ae.getSource() == jbNovasVendas)) {
             //h/ Instanciar tela para iniciar uma nova venda
-            
+            TelaNovasVendasItens telaNovasVendasItens = new TelaNovasVendasItens();
         } else if ((ae.getSource() == jmiRelatorioVendas) || (ae.getSource() == jbRelatorioVendas)) {
             //h/ Instanciar tela para relatorio de vendas
             
@@ -177,7 +200,16 @@ public final class TelaPrincipal extends JFrame implements ActionListener {
         } else if ((ae.getSource() == jmiMovimentacaoProdutos) || (ae.getSource() == jbMovimentacaoProdutos)) {
             //h/ Instanciar tela para entrada de produto no estoque
             
-        } 
+        } else if ((ae.getSource() == jmiCaixa) || (ae.getSource() == jbCaixa)) {
+            //h/ Instanciar tela de Caixa
+            
+        } else if ((ae.getSource() == jmiRelatorioFinanceiro) || (ae.getSource() == jbRelatorioFinanceiro)) {
+            //h/ Instanciar tela de contas a receber
+            
+        } else if ((ae.getSource() == jmiDespesas) || (ae.getSource() == jbDespesas)) {
+            //h/ Instanciar tela para cadastro de despesas
+            
+        }
     }
 
     //h/ Método para adicionar botões ao painel lateral da tela principal
