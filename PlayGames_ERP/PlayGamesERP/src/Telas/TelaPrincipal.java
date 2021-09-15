@@ -190,7 +190,7 @@ public final class TelaPrincipal extends JFrame implements ActionListener {
             
         } else if ((ae.getSource() == jmiNovasVendas) || (ae.getSource() == jbNovasVendas)) {
             //h/ Instanciar tela para iniciar uma nova venda
-            
+            TelaNovasVendasItens telaNovasVendasItens = new TelaNovasVendasItens();
         } else if ((ae.getSource() == jmiRelatorioVendas) || (ae.getSource() == jbRelatorioVendas)) {
             //h/ Instanciar tela para relatorio de vendas
             
