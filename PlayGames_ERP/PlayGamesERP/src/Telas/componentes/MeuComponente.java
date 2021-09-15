@@ -1,5 +1,7 @@
 package Telas.componentes;
 
+import javax.swing.JComponent;
+
 /**
  * @author hedermilani
  */
