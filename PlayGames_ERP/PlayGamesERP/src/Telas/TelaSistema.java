@@ -45,8 +45,8 @@ public abstract class TelaSistema extends JInternalFrame implements ActionListen
     }
     
     //h/ Método para instanciar componentes na tela
-    protected void adicionaComponentes(JPanel painel, int linha, int coluna, int quantidadeLinha, int quantidadeColuna, 
-            MeuComponente componente) {
+    protected void adicionaComponentes(JPanel painel,  int linha, int coluna, int quantidadeLinha, int quantidadeColuna, 
+        MeuComponente componente) {
         //h/ Variavel para armazenar nome do componente
         String nome = componente.getNome();
         //h/ Instncia método para formataão do nome
