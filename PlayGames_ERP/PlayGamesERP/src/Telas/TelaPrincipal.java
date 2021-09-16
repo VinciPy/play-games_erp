@@ -207,7 +207,7 @@ public final class TelaPrincipal extends JFrame implements ActionListener {
             TelaRelatorioFinanceiro telaRelatorioFinancerio = new TelaRelatorioFinanceiro();
             
         } else if ((ae.getSource() == jmiDespesas) || (ae.getSource() == jbDespesas)) {
-            //h/ Instanciar tela para cadastro de despesas
+             TelaCadastroDespesa telaCadastroDespesa = new TelaCadastroDespesa();
             
         }
     }
