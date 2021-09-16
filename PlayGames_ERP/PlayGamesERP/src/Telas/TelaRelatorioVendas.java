@@ -38,8 +38,8 @@ public class TelaRelatorioVendas extends TelaSistema {
        adicionaComponentes(jpComponentes ,1 ,3 ,1 ,1 ,jtfCliente);
        adicionaComponentes(jpComponentes ,3 ,1 ,1 ,1 ,jtfId);
        adicionaComponentes(jpComponentes ,3 ,3 ,1 ,1 ,jtfPagamento);
-       adicionaComponentes(jpComponentes, 13, 3, 1, 1, jbCancelar);
-       adicionaComponentes(jpComponentes, 13, 4, 1, 1, jbSalvar);
+       adicionaComponentes(jpBotoesInferiores, 13, 4, 1, 1, jbCancelar);
+       adicionaComponentes(jpBotoesInferiores, 13, 5, 1, 1, jbSalvar);
     }
 
     private void ActionListener() {

@@ -44,8 +44,8 @@ public class CadastroClienteFisico extends TelaSistema {
         adicionaComponentes(jpComponentes, 3, 2, 1, 1, jtfEndereco);
         adicionaComponentes(jpComponentes, 5, 2, 1 ,1, jtfNumeroCasa);
         adicionaComponentes(jpComponentes, 7, 2, 1, 1, jtfComplemento);
-        adicionaComponentes(jpComponentes, 13, 3, 1, 1, jbCancelar);
-        adicionaComponentes(jpComponentes, 13, 4, 1, 1, jbSalvar);
+        adicionaComponentes(jpBotoesInferiores, 13, 3, 1, 1, jbCancelar);
+        adicionaComponentes(jpBotoesInferiores, 13, 4, 1, 1, jbSalvar);
     }
     
     private void adicionaListener(){

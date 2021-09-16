@@ -38,8 +38,8 @@ public class TelaCadastroDespesas extends TelaSistema {
         adicionaComponentes(jpComponentes, 1, 3, 1, 1, jtfVencimento);
         adicionaComponentes(jpComponentes, 3, 2, 1, 1, jtfTipoDespesa);
         adicionaComponentes(jpComponentes, 5, 2, 1, 1, jtfSituacao);
-        adicionaComponentes(jpComponentes, 13, 3, 1, 1, jbCancelar);
-        adicionaComponentes(jpComponentes, 13, 4, 1, 1, jbSalvar);
+        adicionaComponentes(jpBotoesInferiores, 13, 3, 1, 1, jbCancelar);
+        adicionaComponentes(jpBotoesInferiores, 13, 4, 1, 1, jbSalvar);
     }
     private void AdicionaListener(){
         jbCancelar.addActionListener(this);

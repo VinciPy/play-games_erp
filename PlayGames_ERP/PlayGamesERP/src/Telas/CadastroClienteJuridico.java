@@ -45,8 +45,8 @@ public class CadastroClienteJuridico extends TelaSistema {
         adicionaComponentes(jpComponentes, 1, 2, 1, 1, jtfEndereco);
         adicionaComponentes(jpComponentes, 3, 2, 1, 1, jtfNumero);
         adicionaComponentes(jpComponentes, 5, 2, 1, 1, jtfComplemento);
-        adicionaComponentes(jpComponentes, 13, 3, 1, 1, jbCancelar);
-        adicionaComponentes(jpComponentes, 13, 4, 1, 1, jbSalvar);
+        adicionaComponentes(jpBotoesInferiores, 13, 3, 1, 1, jbCancelar);
+        adicionaComponentes(jpBotoesInferiores, 13, 4, 1, 1, jbSalvar);
     }
     private void ActionListener(){
         jbCancelar.addActionListener(this);
