@@ -193,7 +193,7 @@ public final class TelaPrincipal extends JFrame implements ActionListener {
             TelaNovasVendasItens telaNovasVendasItens = new TelaNovasVendasItens();
         } else if ((ae.getSource() == jmiRelatorioVendas) || (ae.getSource() == jbRelatorioVendas)) {
             //h/ Instanciar tela para relatorio de vendas
-            
+            TelaRelatorioVendas telaRelatorioVendas = new TelaRelatorioVendas();
         } else if ((ae.getSource() == jmiEstoque) || (ae.getSource() == jbEstoque)) {
             //h/ Instanciar tela para relatório de estoque
             
