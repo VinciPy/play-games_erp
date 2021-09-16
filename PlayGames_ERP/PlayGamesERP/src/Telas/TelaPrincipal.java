@@ -204,7 +204,7 @@ public final class TelaPrincipal extends JFrame implements ActionListener {
             //h/ Instanciar tela de Caixa
             
         } else if ((ae.getSource() == jmiRelatorioFinanceiro) || (ae.getSource() == jbRelatorioFinanceiro)) {
-            //h/ Instanciar tela de contas a receber
+            TelaRelatorioFinanceiro telaRelatorioFinancerio = new TelaRelatorioFinanceiro();
             
         } else if ((ae.getSource() == jmiDespesas) || (ae.getSource() == jbDespesas)) {
             //h/ Instanciar tela para cadastro de despesas
