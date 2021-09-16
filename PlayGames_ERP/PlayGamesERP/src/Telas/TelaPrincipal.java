@@ -208,7 +208,7 @@ public final class TelaPrincipal extends JFrame implements ActionListener {
             
         } else if ((ae.getSource() == jmiDespesas) || (ae.getSource() == jbDespesas)) {
             //h/ Instanciar tela para cadastro de despesas
-            
+            TelaCadastroDespesas telaCadastroDespesas = new TelaCadastroDespesas();
         }
     }
 
