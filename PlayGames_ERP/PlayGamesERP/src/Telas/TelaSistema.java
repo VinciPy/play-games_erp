@@ -26,11 +26,9 @@ public abstract class TelaSistema extends JInternalFrame implements ActionListen
         //h/ Instanciar Gerenciador de Layout para novas telas
         getContentPane().setLayout(new BorderLayout());
         //h/ Adicionar paineis ao layout principal
-        getContentPane().add(jpBotoesSuperiores, "North");
-        getContentPane().add(jpComponentes, "West");
+        getContentPane().add(jpComponentes, "Center");
         getContentPane().add(jpBotoesInferiores, "South");
         //h/ Definir cor de fundo dos painéis
-        jpBotoesSuperiores.setBackground(Color.black);
         jpBotoesInferiores.setBackground(Color.black);
         jpComponentes.setBackground(Color.black);
         //h/ Instanciar Layout para todos os painéis
