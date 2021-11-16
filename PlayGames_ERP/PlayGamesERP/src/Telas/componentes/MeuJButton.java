@@ -21,4 +21,19 @@ public class MeuJButton extends JButton implements MeuComponente{
     public String getNome() {
         return nome;
     }
+
+    @Override
+    public void limpar() {
+
+    }
+
+    @Override
+    public void habilitar(boolean status) {
+
+    }
+
+    @Override
+    public boolean eObrigatorio() {
+        return true;
+    }
 }
