@@ -4,6 +4,7 @@ import BancoDados.Conexao;
 import BancoDados.Pojo.Cadastro;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -46,7 +47,7 @@ public class CadastroDao {
     }
     
     //h/ metodo para criar SQL de consulta no banco
-    public boolean consulta(Cadastro cadastro) {
+    public boolean consultar(Cadastro cadastro) {
         //h/ Modulo de tratamento de erros
         try {
             //h/ Criar script SQL de consulta
@@ -85,4 +86,49 @@ public class CadastroDao {
             return false;
         }
     }
+    
+    //h/ Metodo para preparar SQL para alterar banco
+    public boolean alterar(Cadastro cadastro) {
+        //h/ Modulo para tratamento de erro
+        try {
+            //h/ Criar Script SQL de Alteracao
+            String sql = "UPDATE CADASTRO SET "
+                    + "ID_CIDADE = ?, "
+                    + "NOME_RAZAO = ?, "
+                    + "CPF_CNPJ = ?, "
+                    + "RG_INSCREIC = ?"
+                    + "TELEFONE = ?, "
+                    + "EMAIL = ?, "
+                    + "ENDERECO = ?, "
+                    + "NUMERO = ?, "
+                    + "CEP = ?, "
+                    + "COMPLEMENTO = ?, "
+                    + "STATUS = ? "
+                    + "WHERE BP = ?";
+            //H/ Preparar conexao com SQL
+            PreparedStatement ps = Conexao.getConexao().prepareStatement(sql);
+            //h/ Paramentro de alteracao
+            ps.setInt(12, cadastro.getBp());
+            //h/ Dados a serem alterados
+            ps.setInt(1, cadastro.getIdCidade());
+            ps.setString(2, cadastro.getNomeRazao());
+            ps.setInt(3, cadastro.getCpfCnpj());
+            ps.setInt(4, cadastro.getRgInscric());
+            ps.setInt(5, cadastro.getTelefone());
+            ps.setString(6, cadastro.getEmail());
+            ps.setString(7, cadastro.getEndereco());
+            ps.setInt(8, cadastro.getNumero());
+            ps.setInt(9, cadastro.getCep());
+            ps.setString(10, cadastro.getComplemento());
+            ps.setBoolean(11, cadastro.getStatus());
+            return true;
+        } catch(Exception e) {
+            //h/ Apresentar logs de erro
+            e.printStackTrace();
+            //h/ Apresentar mensagem de erro
+            JOptionPane.showMessageDialog(null, "Falha ao realizar Alteraçao");
+            return false;
+        }
+    }
+    
 }

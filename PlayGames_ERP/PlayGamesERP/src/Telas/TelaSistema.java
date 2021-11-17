@@ -51,7 +51,6 @@ public abstract class TelaSistema extends JInternalFrame implements ActionListen
         jpBotoesSuperiores.setLayout(new GridBagLayout());
         jpComponentes.setLayout(new GridBagLayout());
         jpBotoesInferiores.setLayout(new GridBagLayout());
-
         //h/ Instanciar janela como visivel
         setVisible(true);
         //h/ Organiza a tela conforme os componentes
@@ -185,7 +184,32 @@ public abstract class TelaSistema extends JInternalFrame implements ActionListen
         habilitaMenu();
     }
     protected void salvar() {
-        
+        //h/ Verifica qual estado esta sendo confirmada
+        switch (estadoTela) {
+            case INCLUINDO: {
+                //h/ Se nao conseguir realizar a operacao devera retornar
+                if (!incluirDados()) return;
+                break;
+            }
+            case CONSULTANDO: {
+                //h/ Se nao conseguir realizar a operacao devera retornar
+                if (!consultarDados()) return;
+                break;
+            }
+            case ALTERANDO: {
+                //h/ Se nao conseguir realizar a operacao devera retornar
+                if (!alterarDados()) return;
+                break;
+            }
+            case EXCLUINDO: {
+                //h/ Se nao conseguir realizar a operacao devera retornar
+                if (!excluirDados()) return;
+                break;
+            }
+            default: {
+                break;
+            }
+        }
     }
     
     //h/ metodos para instanciar funcoes de dados

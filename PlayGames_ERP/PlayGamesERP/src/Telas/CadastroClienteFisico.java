@@ -1,5 +1,7 @@
 package Telas;
 
+import BancoDados.Dao.CadastroDao;
+import BancoDados.Pojo.Cadastro;
 import Telas.componentes.*;
 import java.awt.event.ActionEvent;
 
@@ -17,11 +19,17 @@ public class CadastroClienteFisico extends TelaSistema {
     private MeuJTextField jtfComplemento = new MeuJTextField(30, "Complemento", false);
     private MeuJCheckBox jcbStatus = new MeuJCheckBox("Ativo: ", true);
     private MeuJButton jbCancelar = new MeuJButton("Cancelar");
-    private MeuJButton jbSalvar = new MeuJButton("Salvar");
+    private MeuJButton jbSalvar = new MeuJButton("Confirmar");
+    //h/ Instanciar objetos para SQL
+    private Cadastro cadastro = new Cadastro();
+    private CadastroDao cadastroDao = new CadastroDao();
+    
     public CadastroClienteFisico(){
         super("Cadastro Pessoa Fisica");
         
         montaTela();
+        
+        montaMenuOptions();
         
         adicionaListener();
         
@@ -62,24 +70,65 @@ public class CadastroClienteFisico extends TelaSistema {
         jbCancelar.addActionListener(this);
         jbSalvar.addActionListener(this);
     }
-
+    
+    //h/ Metodo para passar dados para o banco
     @Override
     public boolean incluirDados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //h/ Setar os dados para o pojo
+        adicionaPojo();
+        //h/ Instanciar metodo para incluir os dados
+        return cadastroDao.inserir(cadastro);
     }
 
     @Override
     public boolean consultarDados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //h/ Setar parametro para pesquisa
+        cadastro.setBp(Integer.parseInt(jtfIdCliente.getText()));
+        //h/ Realizar consulta
+        if (cadastroDao.consultar(cadastro)) {
+            jtfCidadeCliente.setText(String.valueOf(cadastro.getIdCidade()));
+            jtfNomeCliente.setText(cadastro.getNomeRazao());
+            jtfCpfCliente.setText(String.valueOf(cadastro.getCpfCnpj()));
+            jtfRgCliente.setText(String.valueOf(cadastro.getRgInscric()));
+            jtfTelefone.setText(String.valueOf(cadastro.getTelefone()));
+            jtfEmail.setText(cadastro.getEmail());
+            jtfEndereco.setText(cadastro.getEndereco());
+            jtfNumeroCasa.setText(String.valueOf(cadastro.getNumero()));
+            jtfCep.setText(String.valueOf(cadastro.getCep()));
+            jtfComplemento.setText(cadastro.getComplemento());
+            jcbStatus.setEnabled(cadastro.getStatus());
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public boolean alterarDados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //h/ Setar dados para banco
+        adicionaPojo();
+        //h/ Instanciar metodo para alterar dados do banco
+        return cadastroDao.alterar(cadastro);
     }
 
     @Override
     public boolean excluirDados() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    //h/ Metodo para adicionar os dados do banco
+    private void adicionaPojo() {
+        cadastro.setBp(Integer.parseInt(jtfIdCliente.getText()));
+        cadastro.setIdCidade(Integer.parseInt(jtfCidadeCliente.getText()));
+        cadastro.setNomeRazao(jtfNomeCliente.getText());
+        cadastro.setCpfCnpj(Integer.parseInt(jtfCpfCliente.getText()));
+        cadastro.setRgInscric(Integer.parseInt(jtfRgCliente.getText()));
+        cadastro.setTelefone(Integer.parseInt(jtfTelefone.getText()));
+        cadastro.setEmail(jtfEmail.getText());
+        cadastro.setEndereco(jtfEndereco.getText());
+        cadastro.setnumero(Integer.parseInt(jtfNumeroCasa.getText()));
+        cadastro.setCep(Integer.parseInt(jtfCep.getText()));
+        cadastro.setComplemento(jtfComplemento.getText());
+        cadastro.setStatus(jcbStatus.isSelected());
     }
 }
