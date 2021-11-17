@@ -19,13 +19,13 @@ public abstract class TelaSistema extends JInternalFrame implements ActionListen
     //h/ componentes para montar menubar
     protected JMenuItem jmiIncluir, jmiConsultar, jmiAlterar, jmiExcluir;
     // Definando os padrões de estados para os botões
-    private final int PADRAO = 0;
-    private final int INCLUINDO = 1;
-    private final int ALTERANDO = 2;
-    private final int EXCLUINDO = 3;
-    private final int CONSULTANDO = 4;
+    protected final int PADRAO = 0;
+    protected final int INCLUINDO = 1;
+    protected final int ALTERANDO = 2;
+    protected final int EXCLUINDO = 3;
+    protected final int CONSULTANDO = 4;
     // Atributo para controle do estado
-    private int estadoTela = PADRAO;
+    protected int estadoTela = PADRAO;
     //h/ Lista para armazenar todos os componentes da tela
     public ArrayList<MeuComponente> componentes = new ArrayList();
     
@@ -141,7 +141,7 @@ public abstract class TelaSistema extends JInternalFrame implements ActionListen
     }
     
     //h/ metodos para instaciar acoes do menu
-    private void incluir() {
+    protected void incluir() {
         //h/ Altera o estado da tela
         estadoTela = INCLUINDO;
         //h/ Libera os campos para preenchimento
@@ -149,7 +149,7 @@ public abstract class TelaSistema extends JInternalFrame implements ActionListen
         //h/ Define padrao para os itens do menu
         habilitaMenu();
     }
-    private void consultar() {
+    protected void consultar() {
         //h/ Altera o estado da tela
         estadoTela = CONSULTANDO;
         //h/ Libera todos os campos para preenchimento
@@ -157,7 +157,7 @@ public abstract class TelaSistema extends JInternalFrame implements ActionListen
         //h/ Define o padrao para os itens do menu
         habilitaMenu();
     }
-    private void alterar() {
+    protected void alterar() {
         //h/ Altera o estado da tela
         estadoTela = ALTERANDO;
         //h/ Libera todos os campos para preenchimento
@@ -165,7 +165,7 @@ public abstract class TelaSistema extends JInternalFrame implements ActionListen
         //h/ Define o padrao para os itens do menu
         habilitaMenu();
     }
-    private void excluir() {
+    protected void excluir() {
         //h/ Altera o estado da tela
         estadoTela = EXCLUINDO;
         //h/ bloqueia todos os campos para preenchimento
@@ -173,50 +173,12 @@ public abstract class TelaSistema extends JInternalFrame implements ActionListen
         //h/ Define o padrao para os itens do menu
         habilitaMenu();
     }
-    protected void cancelar(){
-        //h/ define o status dos campos
-        habilitaComponentes(false);
-        //h/ Limpar todos os campos da tela
-        limpaComponentes();
-        //h/ define o stado da tela
-        estadoTela = PADRAO;
-        //h/ habilita o menu
-        habilitaMenu();
-    }
-    protected void salvar() {
-        //h/ Verifica qual estado esta sendo confirmada
-        switch (estadoTela) {
-            case INCLUINDO: {
-                //h/ Se nao conseguir realizar a operacao devera retornar
-                if (!incluirDados()) return;
-                break;
-            }
-            case CONSULTANDO: {
-                //h/ Se nao conseguir realizar a operacao devera retornar
-                if (!consultarDados()) return;
-                break;
-            }
-            case ALTERANDO: {
-                //h/ Se nao conseguir realizar a operacao devera retornar
-                if (!alterarDados()) return;
-                break;
-            }
-            case EXCLUINDO: {
-                //h/ Se nao conseguir realizar a operacao devera retornar
-                if (!excluirDados()) return;
-                break;
-            }
-            default: {
-                break;
-            }
-        }
-    }
     
     //h/ metodos para instanciar funcoes de dados
-    public abstract boolean incluirDados();
-    public abstract boolean consultarDados();
-    public abstract boolean alterarDados();
-    public abstract boolean excluirDados();
+    //public abstract boolean incluirDados();
+    //public abstract boolean consultarDados();
+    //public abstract boolean alterarDados();
+    //public abstract boolean excluirDados();
     
     //h/ metodo para definir status dos componentes
     protected void habilitaComponentes(boolean status) {

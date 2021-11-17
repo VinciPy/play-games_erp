@@ -72,7 +72,6 @@ public class CadastroClienteFisico extends TelaSistema {
     }
     
     //h/ Metodo para passar dados para o banco
-    @Override
     public boolean incluirDados() {
         //h/ Setar os dados para o pojo
         adicionaPojo();
@@ -80,7 +79,7 @@ public class CadastroClienteFisico extends TelaSistema {
         return cadastroDao.inserir(cadastro);
     }
 
-    @Override
+    
     public boolean consultarDados() {
         //h/ Setar parametro para pesquisa
         cadastro.setBp(Integer.parseInt(jtfIdCliente.getText()));
@@ -103,7 +102,7 @@ public class CadastroClienteFisico extends TelaSistema {
         }
     }
 
-    @Override
+    
     public boolean alterarDados() {
         //h/ Setar dados para banco
         adicionaPojo();
@@ -111,7 +110,7 @@ public class CadastroClienteFisico extends TelaSistema {
         return cadastroDao.alterar(cadastro);
     }
 
-    @Override
+    
     public boolean excluirDados() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -130,5 +129,51 @@ public class CadastroClienteFisico extends TelaSistema {
         cadastro.setCep(Integer.parseInt(jtfCep.getText()));
         cadastro.setComplemento(jtfComplemento.getText());
         cadastro.setStatus(jcbStatus.isSelected());
+    }
+    
+    protected void salvar() {
+        //h/ Verifica qual estado esta sendo confirmada
+        switch (estadoTela) {
+            case INCLUINDO: {
+                //h/ Se nao conseguir realizar a operacao devera retornar
+                if (!incluirDados()) return;
+                break;
+            }
+            case CONSULTANDO: {
+                //h/ Se nao conseguir realizar a operacao devera retornar
+                if (!consultarDados()) return;
+                break;
+            }
+            case ALTERANDO: {
+                //h/ Se nao conseguir realizar a operacao devera retornar
+                if (!alterarDados()) return;
+                break;
+            }
+            case EXCLUINDO: {
+                //h/ Se nao conseguir realizar a operacao devera retornar
+                if (!excluirDados()) return;
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+        //h/ Limpa todos os campos da tela
+        limpaComponentes();
+        //h/ Define status dos componentes
+        habilitaComponentes(true);
+        //h/ define novo estado da tela
+        estadoTela = PADRAO;
+    }
+    
+    protected void cancelar(){
+        //h/ define o status dos campos
+        habilitaComponentes(false);
+        //h/ Limpar todos os campos da tela
+        limpaComponentes();
+        //h/ define o stado da tela
+        estadoTela = PADRAO;
+        //h/ habilita o menu
+        habilitaMenu();
     }
 }
